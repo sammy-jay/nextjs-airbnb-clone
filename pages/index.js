@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Mediumcard from '../components/Mediumcard';
 import Smallcard from '../components/Smallcard';
 
-export default function Home({ exploreData }) {
+export default function Home({ exploreData, cardsData }) {
   return (
     <div>
       <Head>
@@ -20,18 +20,18 @@ export default function Home({ exploreData }) {
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
 
           {/* Pull some data from the server */}
-         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-         {exploreData?.map((item) => (
-            <Smallcard key={item.img} item={item} />
-          ))}
-         </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {exploreData?.map((item) => (
+              <Smallcard key={item.img} item={item} />
+            ))}
+          </div>
         </section>
         <section>
           <h2 className="text-4xl font-semibold py-5">Live Anywhere</h2>
-          <div>
-          {cardsData?.map((item) => (
-            <Mediumcard key={item.img} item={item} />
-          ))}
+          <div className="flex overflow-scroll scrollbar-hide p-2 space-x-3">
+            {cardsData?.map((item) => (
+              <Mediumcard key={item.img} item={item} />
+            ))}
           </div>
         </section>
       </main>
@@ -43,10 +43,10 @@ export async function getStaticProps() {
   const exploreData = await fetch('https://links.papareact.com/pyp').then(
     (res) => res.json()
   );
-  const cardsData = await fetch('https://links.papareact.com/pyp').then(
-    (res) => res.json()
+  const cardsData = await fetch('https://links.papareact.com/zp1').then((res) =>
+    res.json()
   );
   return {
-    props: { exploreData,cardsData },
+    props: { exploreData, cardsData },
   };
 }
