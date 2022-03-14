@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Header from '../components/Header';
 
 export default function Home() {
   return (
@@ -6,7 +7,9 @@ export default function Home() {
       <Head>
         <title>AirBNB Clone</title>
       </Head>
-      <h2 className="text-blue-600">Hello</h2>
+      {/* Header */}
+      <Header />
+      {/* Banner */}
     </div>
   );
 }
